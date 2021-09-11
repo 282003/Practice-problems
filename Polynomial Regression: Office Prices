@@ -1,0 +1,42 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+import numpy as np
+
+X=[]
+Y =[]
+X_test =[]
+feature, rows = map(int, input().split())
+
+for i in range(rows):
+    elements = list(map(float, input().split()))
+    x =[0]
+    for j in range(len(elements)):
+        if j<feature:
+            x.append(elements[j])
+        else:
+            Y.append(elements[j])
+    X.append(x)
+
+test_case = int(input())
+for i in range(test_case):
+    elements = list(map(float, input().split()))
+    x =[0]
+    for j in range(len(elements)):
+        x.append(elements[j])
+    X_test.append(x)
+    
+poly = PolynomialFeatures(degree=2)
+
+poly_X = poly.fit_transform(np.array(X))
+poly_test_X = poly.fit_transform(np.array(X_test))
+
+# Set the model LinearRegression
+model = LinearRegression()
+model.fit(poly_X, Y)
+
+Y_predict = model.predict(poly_test_X)
+
+for i in range(len(Y_predict)):
+    print(round(Y_predict[i],2))
+        
