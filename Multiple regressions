@@ -1,0 +1,24 @@
+physics =[15, 12, 8, 8, 7, 7, 7, 6, 5, 3]
+history = [10, 25, 17,  11, 13, 17, 20, 13, 9,  15]
+
+def mean(values):
+    return sum(values) / float(len(values))
+
+mean_physics = mean(physics)
+mean_history = mean(history)
+
+def var(data):
+    get_var = 0
+    for i in range(len(physics)):
+        get_var = get_var + (physics[i] - mean_physics)**2
+    return get_var
+
+def cov(physics, history):
+    get_cov=0 
+    for i in range(len(physics)):
+        get_cov= get_cov+ (physics[i]- mean_physics)* (history[i] - mean_history)
+    return get_cov
+    
+slope = cov(physics, history) / var(physics)
+
+print(round(slope,3))
