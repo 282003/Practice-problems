@@ -1,0 +1,26 @@
+ Write a program for the problem: the array of inetegers indicating the marks of the students is given, U have to calculate the percentile of the students aaccording to this rule: the percentile of a student is the %of no of student having marks less then him. 
+For eg: suppose
+
+Student Marks
+A 12
+B 60
+C 80
+D 71
+E 30
+F 45
+
+Solution-
+
+Marks = list(map(int, input().split()))
+output =[]
+
+for items in Marks:
+    percentile = 0
+    count = 0
+    for i in Marks:
+        if i<items:
+            count = count +1
+    percentile = (count*100)//(len(Marks) -1)
+    output.append(percentile)
+    
+print(output)
